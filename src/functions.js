@@ -18,7 +18,7 @@ let index;
 const getIndex = (item) => {
   const nodes = Array.from(item.parentNode.children);
   index = nodes.indexOf(item);
-}
+};
 
 const checked = (event) => {
   const item = event.target.closest('li');
@@ -65,7 +65,6 @@ export const removeItem = (event) => {
   localStorage.setItem('List Storage', JSON.stringify(localStorageList));
 };
 
-
 const event = (listItem, ifcheck, description, taskHolder) => {
   listItem.innerHTML = `
   <div class="check">
@@ -86,13 +85,13 @@ const event = (listItem, ifcheck, description, taskHolder) => {
   toggleInput.addEventListener('click', toggle);
   const checkbox = listItem.querySelector('input[type=checkbox]');
   checkbox.addEventListener('change', checked);
-}
+};
 
 export const display = () => {
   localStorageList = JSON.parse(localStorage.getItem('List Storage'));
   const taskHolder = document.querySelector('.listholder');
   for (let i = 0; i < localStorageList.length; i += 1) {
-    let description = localStorageList[i].description;
+    const { description } = localStorageList[i];
     const listItem = document.createElement('li');
     listItem.classList.add('listitem');
     let x = String(/checked/);
@@ -131,7 +130,7 @@ export const populate = () => {
   }
   const listItem = document.createElement('li');
   listItem.classList.add('listitem');
-  const description = localStorageList.slice(-1)[0].description;
+  const { description } = localStorageList.slice(-1)[0];
   const ifcheck = '';
   event(listItem, ifcheck, description, taskHolder);
 };
